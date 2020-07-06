@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.0/pulse/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+    />
+    <!-- <link rel="stylesheet" href="assets/css/style.css" /> -->
+    <script type="text/javascript" src="vue.js"></script>
+    <title>VUE</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="app">
+        <h1 class="pt-5">{{model.name}}</h1>
+        <summary v-html="model.desc" class="mb-3"></summary>
+        <h2>Bike List</h2>
+        <select
+          class="form-control"
+          id="exampleFormControlSelect2"
+          v-model="message"
+        >
+          <option value="" selected disabled>Select Bike</option>
+          <option
+            class="card mb-3 border-info"
+            style="border-width: 3px;"
+            v-for="element in bicycle"
+            :value="element"
+          >
+            <div class="card-body">
+              <h3 class="card-title">
+                {{element.brand}} <small>{{element.type}}</small>
+              </h3>
+              <button class="card-text btn btn-outline-info">
+                {{element.price}}
+              </button>
+            </div>
+          </option>
+        </select>
+        <hr/ >
+        <div class="card-body p-0 mt-4">
+          <img
+            :src="message.image"
+            class="img-thumbnail rounded float-left w-50 mr-3"
+          />
+          <h2>{{message.brand }} {{message.type}}</h2>
+          <span>{{message.price}}</span>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var model = {
+        name: "Toko Sepeda",
+        desc: "Toko Sepeda Baru Buka",
+      };
+      var dataKita = [
+        {
+          brand: "Pacific",
+          type: "NORIS 5.0",
+          price: "Rp.7.700.000 ",
+          image: "noris5.png",
+          desc: "Bike Perfectly suited for City and Sport",
+        },
+        {
+          brand: "Pacific",
+          type: "SPLENDID 3.0",
+          price: "Rp.3,800,000",
+          image: "splendid3.png",
+          desc: "Bike perfect for newbie biker ",
+        },
+        {
+          brand: "Pacific",
+          type: "NORIS PRO",
+          price: "Rp.7,500,000",
+          image: "norispro.png",
+          desc: "The ultimate bike for every day usage",
+        },
+      ];
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          message: "",
+          model,
+          bicycle: dataKita,
+        },
+        methods: {
+          brandName: function () {
+            return this.brand + this.type;
+          },
+        },
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
